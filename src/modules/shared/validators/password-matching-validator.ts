@@ -1,8 +1,8 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export const PasswordMatchingValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const newPassword = control.get('newPassword');
-  const confirmPassword = control.get('confirmPassword');
+  const password = control.get('password');
+  const password_confirmation = control.get('password_confirmation');
 
-  return newPassword?.value === confirmPassword?.value ? null : { notMatched: true };
+  return password?.value === password_confirmation?.value ? null : { notMatched: true };
 };

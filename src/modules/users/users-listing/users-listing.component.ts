@@ -32,11 +32,11 @@ export class UsersListingComponent implements OnInit {
     { headerName: 'Grandfather Name', field: 'grandfather-name' },
     { headerName: 'Family Branch Name', field: 'family_branch-name' },
     { headerName: 'Gender', field: 'Gender' },
-    // { headerName: 'Email', field: 'email' },
-    // { headerName: 'Date of Birth', field: 'date_of_birth' },
-    // { headerName: 'Phone Number', field: 'phone' },
-    // { headerName: 'Phone Code', field: 'phone_code' },
-    // { headerName: 'Country Code', field: 'country_code' },
+    { headerName: 'Email', field: 'email' },
+    { headerName: 'Date of Birth', field: 'date_of_birth' },
+    { headerName: 'Phone Number', field: 'phone' },
+    { headerName: 'Phone Code', field: 'phone_code' },
+    { headerName: 'Country Code', field: 'country_code' },
     { headerName: 'Is Premium', field: 'is_premium', cellStyle: this.SetIsPremiumStyle },
     { headerName: 'Role', field: 'type' },
     { headerName: 'Created at', field: 'created_at' },
@@ -94,10 +94,10 @@ export class UsersListingComponent implements OnInit {
   onActionClicked(gridAction: GridActionModel) {
     switch (gridAction.action) {
       case 'Add':
-        this.modalService.openModal('users-upsert');
+        this.modalService.openModal('users-upsert', undefined, 'lg');
         break;
       case 'Edit':
-        this.modalService.openModal('users-upsert',new Map<string, any>([['user', gridAction.data]]));
+        this.modalService.openModal('users-upsert',new Map<string, any>([['user', gridAction.data]]), 'lg');
         break;
       case 'ViewUsers':
         this.onViewUsers(this.gridCustomButtons[0].id);
