@@ -34,7 +34,15 @@ export class AuthService {
     return !!localStorage.getItem("token");
   }
 
-  logOut() {
+  onGetActiveUserRole() {
+    return localStorage["type"];
+  }
+
+  onGetActiveUserEmail() {
+    return localStorage["email"];
+  }
+
+  LogOut() {
     localStorage.removeItem("token");
     this.router.navigateByUrl('/login');
   }

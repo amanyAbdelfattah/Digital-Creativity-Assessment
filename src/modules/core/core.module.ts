@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { NavItemsComponent } from './nav-items/nav-items.component';
@@ -17,7 +16,6 @@ import { NavItemsComponent } from './nav-items/nav-items.component';
         LoginComponent,
         NavBarComponent,
         FooterComponent,
-        DashboardComponent,
         LoadingSpinnerComponent,
         SideBarComponent,
         NavItemsComponent

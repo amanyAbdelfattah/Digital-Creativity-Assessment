@@ -47,15 +47,14 @@ export class LoginComponent implements OnInit, OnDestroy{
     this.authService.Login(authModel.field, authModel.password).pipe(finalize(() => {
       this.loader.stop();
     })).subscribe({
-      next: (data: any) => {
-        localStorage.setItem('token', data.data.token);
-        this.router.navigate(['dashboard']);
+      next: (res: any) => {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('type', res.data.type);
+        localStorage.setItem('email', res.data.email);
+        this.router.navigate(['users']);
       },
-      error: (error) => {
+      error: () => {
         this.alertService.fire(null, 'Oops...', 'Invalid Credentials', 'error');
-      },
-      complete: () => {
-        this.loader.stop();
       }
     });
   }

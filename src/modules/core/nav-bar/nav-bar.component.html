@@ -1,1 +1,32 @@
-<p>nav-bar works!</p>
+<nav *ngIf="authService.isLoggedIn()" class="navbar navbar-expand-lg navbar-dark py-0 top-navbar">
+    <div class="container">
+        <a [ngClass]="authService.isLoggedIn() ? '' : 'justify-content-end'"
+            class="navbar-brand d-flex align-items-center pointer col-3" [routerLink]="['']">
+            <img src="../../../assets/images/logo.png" width="20%" height="20%" />
+            <label class="col-4 mx-2 pointer text-black">
+                <span class="fs-1 fw-bold text-white">DC</span>
+            </label>
+        </a>
+        <button *ngIf="authService.isLoggedIn()" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div *ngIf="authService.isLoggedIn()" class="collapse navbar-collapse" id="navbarNav">
+            <ul class="d-lg-none navbar-nav">
+                <app-nav-items></app-nav-items>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{authService.onGetActiveUserEmail()}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><button [routerLink]="['/change-password']" class="dropdown-item top-navbar-dropdown">User Profile</button></li>
+                        <li><button class="dropdown-item top-navbar-dropdown"(click)="authService.LogOut()">Logout</button></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
