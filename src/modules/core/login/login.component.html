@@ -1,0 +1,29 @@
+<div class="row justify-content-evenly align-items-center full-height login-form position-relative flex-column flex-lg-row text-center text-lg-start">
+    <div class="login-overlay position-absolute w-100 h-100 top-0 start-0"></div>
+    <div class="col-lg-4 col-md-6 order-1 col-sm-6">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="card border-0 rounded shadow-sm py-5 login-bg">
+                <h2 class="text-center text-white login-header fw-bold pb-4">Login</h2>
+                <div class="bg-white rounded d-flex align-items-center p-2 mb-4 border w-75 mx-auto">
+                    <input type="email" id="email" [formControlName]="'field'"
+                        class="flex-grow-1 h-25 border-0 ps-3 outline-none" placeholder="Email Address" required>
+                    <i class="fa fa-user-o fs-5 text-secondary pe-3 pointer"></i>
+                </div>
+                <div class="bg-white rounded d-flex align-items-center p-2 mb-4 border w-75 mx-auto">
+                    <input [type]="fieldTextType ? 'text' : 'password'" id="inputPassword" [formControlName]="'password'"
+                        class="flex-grow-1 h-25 border-0 ps-3 outline-none" placeholder="Password" required>
+                    <i class="fs-5 text-secondary pe-3 pointer fa"
+                        [ngClass]="{ ' fa-eye-slash': fieldTextType, ' fa-eye': !fieldTextType }"
+                        (click)="onToggleFieldTextType()"></i>
+                </div>
+                <button class="btn btn-primary mt-2 w-75 mx-auto" type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-5 col-md-6 col-sm-6 text-center">
+        <img class="my-md-3 my-sm-3 my-lg-3" src="../../../assets/images/logo.png" alt="" width="50%" height="50%">
+        <p class="fs-4 mt-3 d-none d-lg-block abbreviation"><span class="fs-1 fw-bold text-primary">D</span>igital &nbsp;&nbsp;&nbsp; <span class="fs-1 fw-bold text-primary">C</span>reativity &nbsp;&nbsp;&nbsp; <span class="fs-1 fw-bold text-primary">A</span>ssessment</p>
+    </div>
+</div>
