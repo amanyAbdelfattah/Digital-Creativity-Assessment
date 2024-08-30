@@ -1,0 +1,9 @@
+.ag-theme-alpine {
+    overflow: scroll;
+}
+
+.ag-grids {
+    ::ng-deep .ag-root-wrapper {
+        min-width: 1000px;
+    }
+}

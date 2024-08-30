@@ -1,1 +1,36 @@
-<p>users-listing works!</p>
+<app-data-grid
+*ngIf = "gridData"
+[title]="'Users'"
+[titleIconClass]="'fa-users'"
+[gridCols] = "gridCols"
+[gridData] = "{data: users}"
+(actionClicked) = "onActionClicked($event)"
+[withFiltration] = true
+[canView]= true
+[canAdd] = true
+[canEdit] = true
+[canDeactivate] = true
+[gridCustomButtons] = "gridCustomButtons"
+>
+<ng-container filtration [formGroup]="filtrationForm">
+    <div class="col-12 col-md-6 my-1">
+        <select class="form-select" [formControlName]="'type'">
+            <option [ngValue]="null">Filter By Type</option>
+            <option [value]="type" *ngFor="let type of types">{{type}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-6 my-1">
+        <select class="form-select" [formControlName]="'gender'">
+            <option [ngValue]="null">Filter By Gender</option>
+            <option [value]="gender" *ngFor="let gender of genders">{{gender}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-6 my-1">
+        <input type="checkbox" name="is_premium" class="align-middle" [formControlName]="'is_premium'"> Is Premium
+    </div>
+    <div class="col-12 text-end my-1">
+        <button type="button" class="btn btn-sm btn-warning text-white mx-2" (click)="onClearFiltration()">Back To Full List</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="onFilter()">Filter</button>
+    </div>
+</ng-container>
+</app-data-grid>
