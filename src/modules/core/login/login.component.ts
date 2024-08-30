@@ -6,7 +6,9 @@ import { AlertType } from 'src/models/_enums/AlertTypeEnum';
 import { AuthModel } from 'src/models/AuthModel';
 import { AlertService } from 'src/services/alert.service';
 import { AuthService } from 'src/services/auth.service';
+import { CountriesService } from 'src/services/countries.service';
 import { LoadingSpinnerService } from 'src/services/loading-spinner.service';
+import { UsersService } from 'src/services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -37,9 +39,16 @@ export class LoginComponent implements OnInit, OnDestroy{
   }
 
   onSubmit() {
-    this.authService.Login("admin@admin.com", "123456789", "admin").subscribe({
+    this.loader.start();
+    const authModel: AuthModel = {
+      field: this.loginForm.controls['field'].value,
+      password: this.loginForm.controls['password'].value
+    }
+    this.authService.Login(authModel.field, authModel.password).pipe(finalize(() => {
+      this.loader.stop();
+    })).subscribe({
       next: (data: any) => {
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data.data.token);
         this.router.navigate(['dashboard']);
       },
       error: (error) => {

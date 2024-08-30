@@ -16,7 +16,7 @@
                         [ngClass]="{ ' fa-eye-slash': fieldTextType, ' fa-eye': !fieldTextType }"
                         (click)="onToggleFieldTextType()"></i>
                 </div>
-                <button class="btn btn-primary mt-2 w-75 mx-auto" type="submit">
+                <button class="btn btn-primary mt-2 w-75 mx-auto" type="submit" [disabled]="!loginForm.valid">
                     Submit
                 </button>
             </div>
