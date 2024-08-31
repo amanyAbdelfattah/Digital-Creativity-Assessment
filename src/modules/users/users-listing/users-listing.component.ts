@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { finalize, Subscription } from 'rxjs';
 import { GridActionModel } from 'src/models/_common/GridActionModel';
 import { GridDataModel } from 'src/models/_common/GridDataModel';
@@ -54,6 +55,7 @@ export class UsersListingComponent implements OnInit {
     private dataGridService: DataGridService,
     private datePipe: DatePipe,
     private alertService: AlertService,
+    private router: Router,
     private modalService: ModalService
   ) {}
 
@@ -93,6 +95,9 @@ export class UsersListingComponent implements OnInit {
 
   onActionClicked(gridAction: GridActionModel) {
     switch (gridAction.action) {
+      case 'View':
+        this.router.navigate(['users/' + gridAction.data.id]);
+        break;
       case 'Add':
         this.modalService.openModal('users-upsert', undefined, 'lg');
         break;

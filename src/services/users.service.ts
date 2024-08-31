@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Environment } from 'src/environments/Environment';
+import { UserDetailsModel } from 'src/models/user/UserDetailsModel';
 import { UserFiltrationModel } from 'src/models/user/UserFiltrationModel';
 import { UserListingModel } from 'src/models/user/UserListingModel';
 
@@ -44,6 +45,21 @@ export class UsersService {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.httpClient.get<UserListingModel[]>(url, { headers });
+  }
+
+  GetUserDetails(id: string): Observable<UserDetailsModel> {
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Accept-Language': 'ar',
+      'App-Version': '11',
+      'Device-Name': 'iphone 11 pro',
+      'Device-OS-Version': '13',
+      'Device-UDID': '1234',
+      'Device-Push-Token': '123456',
+      'Device-Type': 'ios',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.httpClient.get<UserDetailsModel>(`${Environment.baseUrl}users/${id}`, { headers });
   }
 
   ToggleActivation(userId: number) {
