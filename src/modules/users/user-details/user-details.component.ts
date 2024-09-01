@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserDetailsModel } from 'src/models/user/UserDetailsModel';
+import { UserListingModel } from 'src/models/user/UserListingModel';
+import { ModalService } from 'src/services/modal.service';
 
 @Component({
   selector: 'app-user-details',
@@ -14,7 +16,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +28,10 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
       
     });
     this.subscriptions.push(activatedRouteSubscription);
+  }
+
+  onEditUser(user: UserDetailsModel) {
+    this.modalService.openModal('users-upsert',new Map<string, any>([['user', user]]), 'lg');
   }
 
   ngOnDestroy(): void {

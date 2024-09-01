@@ -5,10 +5,13 @@
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">
+                <h5 class="card-title position-relative">
                     <i class="fa fa-circle" [ngClass]="{'text-success': user.active, 'text-danger': !user.active}"></i>
                     <i class="fa fa-star ms-1" [ngClass]="{'text-primary': user.is_premium, 'text-secondary': !user.is_premium}"></i>
                     {{user.name + ' ' + user.father_name + ' ' + user.grandfather_name}} - {{user.family_branch_name}}
+                    <button class="btn btn-warning text-white position-absolute edit-btn" title="Edit user" (click)="onEditUser(user)">
+                        <i class="fa fa-edit"></i>
+                    </button>
                 </h5>
                 <p class="card-text"><b>Type</b>: {{user.type}}</p>
                 <p class="card-text"><b>Email</b>: {{user.email}}</p>

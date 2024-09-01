@@ -22,7 +22,6 @@
                         {{authService.onGetActiveUserEmail()}}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><button [routerLink]="['/change-password']" class="dropdown-item top-navbar-dropdown">User Profile</button></li>
                         <li><button class="dropdown-item top-navbar-dropdown"(click)="authService.LogOut()">Logout</button></li>
                     </ul>
                 </li>
