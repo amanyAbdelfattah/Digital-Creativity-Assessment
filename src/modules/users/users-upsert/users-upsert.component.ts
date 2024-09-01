@@ -29,8 +29,6 @@ export class UsersUpsertComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.user);
-    
     this.userForm = new FormGroup({
       name: new FormControl(this.user?.name, [Validators.required]),
       father_name: new FormControl(this.user?.father_name, [Validators.required]),
@@ -46,8 +44,8 @@ export class UsersUpsertComponent implements OnInit {
       phone_code: new FormControl(this.user?.phone_code, [Validators.required]),
       country_code: new FormControl(this.user?.country_code, [Validators.required]),
       tribe: new FormControl(this.user?.tribe, [Validators.required]),
-      active: new FormControl(this.user?.active == "True" ? true : false),
-      is_premium: new FormControl(this.user?.is_premium == "True" ? true : false)
+      active: new FormControl(this.user?.active == "True" || this.user?.active == 1 ? true : false),
+      is_premium: new FormControl(this.user?.is_premium == "True" || this.user?.is_premium == 1 ? true : false)
     }, { validators: PasswordMatchingValidator });
 
     if(this.user) {
